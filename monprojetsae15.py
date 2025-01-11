@@ -67,3 +67,107 @@ for ligne in fichier:
         #comptage d'accusé de réception
         if "ack" in ligne:
             ackcounter+=1
+                 
+        #filling the IP source(ipsr) list
+        #Remplissage de la liste des sources IP (ipsr)
+        ipsr.append(split[2])  
+        #filling the IP destination(ipde) list
+        #Remplissage de la liste des destinations IP (ipsr)
+        ipde.append(split[4])
+        #filling the hour (heure) list
+        #remplissage de la liste des heures
+        heure.append(split[0])
+        #filling the lenght (longueur) list
+        #remplir la liste de longueur
+        if "length" in ligne:
+            split = ligne.split(" ")
+            if "HTTP" in ligne :
+                longueur.append(split[-2])
+            else: 
+                longueur.append(split[-1]) 
+        #to detect request and reply via ICMP protocol
+        #détecter les requêtes et les réponses via le protocole ICMP.
+        if "ICMP" in ligne:
+            if "request" in ligne:
+                requestcounter+=1
+            if "reply" in ligne:
+                replycounter+=1
+'''ipsource2 = []
+ipdesti2 = []   
+ipdestifinale=[]             
+                
+for i in ipsr:
+    if not "." in i:
+        ipsource2.append(i)
+    elif "ssh" in i or len(i) > 15 or "B" in i:
+        ports = i.split(".")
+        del ports[-1]
+        delim = "."
+        delim = delim.join(ports)
+        ipsource2.append(delim)
+    else:
+        ipsource2.append(i)
+for j in ipde:
+    if not "." in j:
+        ipdesti2.append(j)
+    elif "ssh" in j or len(j) > 15 or "B" in j:
+        ports = j.split(".")
+        del ports[-1]
+        delim = "."
+        delim = delim.join(ports)
+        ipdesti2.append(delim)
+    else:
+        ipdesti2.append(j)
+
+for l in ipdesti2:
+    if not ":" in l:
+        ipdestifinale.append(l)
+    else:
+        deuxp = l.split(":")
+        ipdestifinale.append(deuxp[0])   '''
+
+             
+globalflagcounter=flagcounter+flagcounterP+flagcounterS
+
+P=flagcounterP/globalflagcounter
+S=flagcounterS/globalflagcounter
+A=flagcounter/globalflagcounter 
+
+globalreqrepcounter=replycounter+requestcounter
+req=requestcounter/globalreqrepcounter
+rep=replycounter/globalreqrepcounter
+          
+#transform all counters into lists to view them on the csv file
+#transformer tous les compteurs en listes pour les afficher dans le fichier csv 
+flagcounter=[flagcounter]
+flagcounterP=[flagcounterP]
+flagcounterS=[flagcounterS]
+framecounter=[framecounter]
+requestcounter=[requestcounter]
+replycounter=[replycounter]
+seqcounter=[seqcounter]
+ackcounter=[ackcounter]
+wincounter=[wincounter]
+
+
+
+# create python graphic with matplotlib library 
+#créer un graphe avec la bibliothèque matplotlib
+  #circular graphic for flags
+  #graphe circulaire pour les flags
+name = ['Flag [.]', 'Flag [P]', 'Flag [S]']
+data = [A,P,S]
+
+explode=(0, 0, 0)
+plt.pie(data, explode=explode, labels=name, autopct='%1.1f%%', startangle=90, shadow=True)
+plt.axis('equal')
+plt.savefig("graphe1.png")
+plt.show()
+  #circular graphic for request and reply 
+  #graphe circulaire pour les requêtes et réponses
+name2 = ['Request' , 'Reply']
+data2 = [req,rep]  
+explode=(0,0)
+plt.pie(data2,explode=explode,labels=name2, autopct='%1.1f%%',startangle=90, shadow=True)
+plt.savefig("graphe2.png")
+plt.show()
