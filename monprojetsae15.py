@@ -171,3 +171,87 @@ explode=(0,0)
 plt.pie(data2,explode=explode,labels=name2, autopct='%1.1f%%',startangle=90, shadow=True)
 plt.savefig("graphe2.png")
 plt.show()
+
+#contenu de la page web = web page content 
+htmlcontenu='''
+
+<html lang="fr">
+   <head>
+      <meta charset="utf-8">
+      <title> Traitement des données </title>
+      <style>
+      body{
+             
+          background-image: url('https://cdn.pixabay.com/photo/2021/07/09/17/46/digitization-6399664_1280.jpg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          color:white;
+          background-attachment: fixed;
+          }
+      </style>
+   </head>
+   
+   <body>
+       <center><h1>Clément Bénie Nguimby</h1></center>
+       <center><h2>Projet SAE 15 groupe A2</h2></center>
+       <center><p> Bienvenu sur la page web du traitements des données. <br> Je vais vous presenter les infomations et données petinentes que j'ai trouvé dans le fichier à traiter </p></center>
+       <center><h3> Nombre total des trames échanges</h3> %s</center>
+       <br>
+       <center><h3> Drapeaux (Flags)<h3></center>
+       <center>Nombre de flags [P] (PUSH) = %s
+       <br>Nombre de flags [S] (SYN) = %s  
+       <br>Nombre de flag [.] (ACK) = %s
+       <br>
+       <br>
+       <img src="graphe1.png">
+       <h3> Nombre des requests et replys </h3>
+       Request = %s 
+       <br>
+       Reply = %s
+       <br>
+       <br>
+       <img src="graphe2.png">
+       <h3>Statistiques entre seq et windows et ack </h3>
+       Nombre de seq = %s
+           <br>
+       Nombre de win = %s
+           <br>
+       Nombre de ack = %s
+       
+       <p> L’analyse de ces données m’a permis de savoir qu’il s’agit d’une attaque DDoS car d'une part il y a non seulement une recurrence de demandes de connexion 
+       avec la même adresse source et au même moment, d'autre part nous sommes également censés être sur un réseau local où l'on n’a pas besoin de se connecter à distance,
+       mais ici nous observons une demande de connexion à distance avec SSH, ce qui prouve qu’il s’agit d’un intrus.</p>
+       
+      
+   </body>
+
+</html>
+'''%(framecounter,flagcounterP,flagcounterS,flagcounter,requestcounter,replycounter,seqcounter,wincounter,ackcounter)
+
+#ouverture d'un fichier csv = open a csv file for data extracted from txt file untreated 
+with open('nguimby.csv', 'w', newline='') as fichiercsv:
+    writer = csv.writer(fichiercsv, delimiter=';')
+    writer.writerow(['Heure','IP source','IP destination','Flag','Seq','Length'])
+    writer.writerows(zip(heure,ipsr,ipde,flag,seq,longueur))
+    fichiercsv.close()
+    
+#ouverture d'un fichier csv    = open a csv file for different stats
+with open('benie.csv', 'w', newline='') as fichier2:
+    writer = csv.writer(fichier2, delimiter=';')
+    writer.writerow(['Flag[P] (PUSH)','Flag[S] (SYN)','Flag[.] (ACK)','Nombre total de trames',"nombre de request","nombre de reply","nombre de sequence","nombre de acknowledg","nombre de window"])
+    writer.writerows(zip(flagcounterP,flagcounterS,flagcounter,framecounter,requestcounter,replycounter,seqcounter,ackcounter,wincounter))
+    fichier2.close()
+    
+#partie page  web = open a web page with important information and statistics
+with open("clément.html","w", encoding='utf-8') as html:
+    html.write(htmlcontenu)
+    print("page web créée avec succès")
+
+       
+fichier.close()
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 30 21:01:29 2024
+
+@author: userlocal
+"""
