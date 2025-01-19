@@ -1,0 +1,53 @@
+
+
+<html lang="fr">
+   <head>
+      <meta charset="utf-8">
+      <title> Traitement des données </title>
+      <style>
+      body{
+             
+          background-image: url('https://cdn.pixabay.com/photo/2021/07/09/17/46/digitization-6399664_1280.jpg');
+          background-repeat: no-repeat;
+          background-size: cover;
+          color:white;
+          background-attachment: fixed;
+          }
+      </style>
+   </head>
+   
+   <body>
+       <center><h1>Clément Bénie Nguimby</h1></center>
+       <center><h2>Projet SAE 15 groupe B1</h2></center>
+       <center><p> Bienvenu sur la page web du traitements des données. <br> A travers cette page, Je vais vous presenter les infomations et données pertinentes que j'ai réussi à extraire dans le fichier à traiter </p></center>
+       <center><h3> Nombre total des trames échanges</h3> [11016]</center>
+       <br>
+       <center><h3> Drapeaux (Flags)<h3></center>
+       <center>Nombre de flags [P] (PUSH) = [1673]
+       <br>Nombre de flags [S] (SYN) = [2046]  
+       <br>Nombre de flag [.] (ACK) = [6961]
+       <br>
+       <br>
+       <img src="graphe1.png">
+       <h3> Nombre des requests et replys </h3>
+       Request = [42] 
+       <br>
+       Reply = [42]
+       <br>
+       <br>
+       <img src="graphe2.png">
+       <h3>Statistiques entre seq et windows et ack </h3>
+       Nombre de seq = [8201]
+           <br>
+       Nombre de win = [10766]
+           <br>
+       Nombre de ack = [8768]
+       
+       <p> L’analyse de ces données m’a permis de savoir qu’il s’agit là d’une attaque DDoS car d'une part il y a non seulement une recurrence de demandes de connexion 
+       avec la même adresse source et au même moment, d'autre part nous sommes également censés être sur un réseau local où l'on n’a pas besoin de se connecter à distance,
+       mais ici nous observons une demande de connexion à distance avec SSH, ce qui prouve qu’il s’agit d’un intrusion.</p>
+       
+      
+   </body>
+
+</html>
