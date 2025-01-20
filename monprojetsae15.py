@@ -182,7 +182,7 @@ htmlcontenu='''
       <style>
       body{
              
-          background-image: url('https://cdn.pixabay.com/photo/2021/07/09/17/46/digitization-6399664_1280.jpg');
+          background-image: url('syber.jpg');
           background-repeat: no-repeat;
           background-size: cover;
           color:white;
@@ -193,8 +193,8 @@ htmlcontenu='''
    
    <body>
        <center><h1>Clément Bénie Nguimby</h1></center>
-       <center><h2>Projet SAE 15 groupe A2</h2></center>
-       <center><p> Bienvenu sur la page web du traitements des données. <br> Je vais vous presenter les infomations et données petinentes que j'ai trouvé dans le fichier à traiter </p></center>
+       <center><h2>Projet SAE 15 groupe B1</h2></center>
+       <center><p> Bienvenu sur la page web du traitements des données. <br> A travers cette page, Je vais vous presenter les infomations et données pertinentes que j'ai réussi à extraire dans le fichier à traiter </p></center>
        <center><h3> Nombre total des trames échanges</h3> %s</center>
        <br>
        <center><h3> Drapeaux (Flags)<h3></center>
@@ -218,9 +218,9 @@ htmlcontenu='''
            <br>
        Nombre de ack = %s
        
-       <p> L’analyse de ces données m’a permis de savoir qu’il s’agit d’une attaque DDoS car d'une part il y a non seulement une recurrence de demandes de connexion 
+       <p> L’analyse de ces données m’a permis de savoir qu’il s’agit là d’une attaque DDoS car d'une part il y a non seulement une recurrence de demandes de connexion 
        avec la même adresse source et au même moment, d'autre part nous sommes également censés être sur un réseau local où l'on n’a pas besoin de se connecter à distance,
-       mais ici nous observons une demande de connexion à distance avec SSH, ce qui prouve qu’il s’agit d’un intrus.</p>
+       mais ici nous observons une demande de connexion à distance avec SSH, ce qui prouve qu’il s’agit d’un intrusion.</p>
        
       
    </body>
